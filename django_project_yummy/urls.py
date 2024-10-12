@@ -1,5 +1,5 @@
 """
-URL configuration for django_project_yummy project.
+URL configuration for yummy_sep_2024 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -15,8 +15,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+from home.views import index
+from yummy_sep_2024 import settings
+from django.conf.urls.static import static
+from home.views import thanks
+from account.views import UserLogin, UserRegister, logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('thanks/', thanks, name='thanks'),
+    path('', index, name='index'),
+    path('manager/', include('manager.urls')),
+
+    path('login/', UserLogin.as_view(), name='login'),
+    path('register/', UserRegister.as_view(), name='register'),
+    path('logout/', logout, name='logout'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

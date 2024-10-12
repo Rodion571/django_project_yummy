@@ -1,5 +1,5 @@
 """
-WSGI config for django_project_yummy project.
+WSGI config for yummy_sep_2024 project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_project_yummy.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yummy_sep_2024.settings')
 
 application = get_wsgi_application()
