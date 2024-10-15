@@ -10,13 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+
+
 from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Путь к корню проекта
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv('.env')
+
+# Загрузка переменных окружения из файла .env
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+# Проверка значения переменной DB_ENV
+db_env = os.getenv('DB_ENV')
+print("Loading environment variables from .env file...")
+print("DB_ENV:", db_env)  # Отладочный вывод
+if db_env is None:
+    raise ValueError("DB_ENV is not set properly")
+else:
+    print(f"DB_ENV is set to: {db_env}")
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
